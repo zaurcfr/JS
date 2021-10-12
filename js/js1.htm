@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>JS</title>
+    </head>
+    <body>
+        <h1 id="header"></h1>        
+        <p><input id="input1" type="text" /></p>
+        <p><button onclick="salamVer()" id="btn1">Ok</button></p>
+
+        <script>
+            // window.alert("Hello JS");
+            // console.log("Hello JS");
+            // document.write("Hello JS");
+            // let name = window.prompt("Adın nədir ?");
+            // document.getElementById("header").innerText = "Salam " + name;
+
+
+            // const header = document.getElementById("header");
+            // const input1 = document.getElementById("input1");
+            // const btn1 = document.getElementById("btn1");
+
+            // btn1.onclick = function() {
+            //     let name = input1.value;
+            //     header.innerText = "Salam " + input1.value;
+            // }
+
+            let salamVer = function() {
+                let name = input1.value;
+                header.innerText = "Salam " + name;
+            }
+            console.log(salamVer);
+
+
+        </script>
+    </body>
+</html>

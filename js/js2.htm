@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>JS</title>
+        <style>
+            input { width: 30px;}
+        </style>
+    </head>
+    <body>
+        <input id="a" type="text" /> +
+        <input id="b" type="text" />
+        <button onclick="calculate()"> = </button>
+        <span id="c"></span>
+
+        
+
+        <script>
+            const a = document.getElementById("a");
+            const b = document.getElementById("b");
+            const c = document.getElementById("c");
+
+            let calculate = function() {
+                // c.innerText = Number(a.value) + Number(b.value);
+                c.innerText = +a.value + +b.value;
+            }
+        </script>
+    </body>
+</html>
