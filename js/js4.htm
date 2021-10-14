@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>JS</title>
+        <style>
+            input { width: 30px;}
+        </style>
+    </head>
+    <body>
+        <p><input id="a" type="text" /></p>
+        <p><input id="b" type="text" /></p>
+        <p><input id="c" type="text" /></p>
+        <select name="" id="op">
+            <option value="cem">Cem</option>
+            <option value="orta">Orta</option>
+            <option value="max">Max</option>
+            <option value="min">Min</option>
+        </select>
+        <button onclick="hesabla()"> = </button>
+        <div id="result"></div>
+
+        <script>
+            const a = document.getElementById("a");
+            const b = document.getElementById("b");
+            const c = document.getElementById("c");
+            const op = document.getElementById("op");
+            const result = document.getElementById("result");
+            let av = bv = cv = 0;
+
+            let hesabla = function() {
+                getValues();
+                let n;
+                switch(op.value){
+                    case 'cem':
+                        n = cem();
+                        break;
+                    case 'orta':
+                        n = orta();
+                        break;
+                    case 'max':
+                        n = max();
+                        break;
+                    case 'min':
+                        n = min();
+                        break;
+                }
+                n = result.innerHTML = op.value + ": " + n;
+            }
+
+            function getValues() {
+                av = +a.value;
+                bv = +b.value;
+                cv = +c.value;
+            }
+
+            function cem() {
+                return (av + bv + cv);
+            }
+            function orta() {
+                return cem() / 3;
+            }
+            function max() {
+                return  (av > bv && av > cv) ? av : 
+                        (bv > av & bv > cv) ? bv : cv;
+            }
+            function min() {
+                return  (av < bv && av < cv) ? av : 
+                        (bv < av & bv < cv) ? bv : cv;
+            }
+
+            let calculate = function() {
+                let sum = +a.value + +b.value + +c.value;
+                let avg = sum / 3;
+                let max = Math.max(a.value, b.value, c.value);
+                let min = Math.min(a.value, b.value, c.value);
+
+                result.innerHTML = `<p>Cem: ${sum} </p>
+                                    <p>Orta: ${avg} </p>
+                                    <p>Max: ${max} </p>
+                                    <p>Min: ${min} </p>`
+            }
+        </script>
+    </body>
+</html>
