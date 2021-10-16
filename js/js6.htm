@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Document</title>
+    </head>
+    <body>
+        <ul id="siyahi"></ul>
+
+
+
+        <script>
+            const siyahi = document.getElementById("siyahi");
+
+            let arr = ["Resul", "Zaur", "Metin", "Ayxan"];
+            arr.push("Senan");
+            
+            // for (let i = 0; i < arr.length; i++) {
+            //     siyahi.innerHTML += `<li> ${arr[i]} </li>`
+            // }
+
+            arr.forEach(function(element){
+                siyahi.innerHTML += `<li> ${element} </li>`
+            })
+
+            // arr.pop();
+            // arr[4] = "Heci";
+
+            // delete arr[2];
+            // delete arr[3];
+            // arr.push("Kamran");
+
+            // arr.splice(2,2);
+            // arr.splice(2,0,"Ali");
+            // arr.splice(4,1,"Elgun");
+
+        </script>
+    </body>
+</html>
