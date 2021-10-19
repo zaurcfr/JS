@@ -25,28 +25,43 @@
 
         <script>
             const cedvel = document.getElementById("cedvel");
-            let kod = "";
-            let letter = ["", "A", "B", "C", "D", "E", "F", "G", "H", ]
-            let x = 2;
-            let y = 1;
 
+            chess();
 
+            function chess(x = 2, y = 1) {
+                let kod = "";
+                let letter = ["", "A", "B", "C", "D", "E", "F", "G", "H", ]
 
-            for (let i = 0; i <= 8; i++) {
-                kod += "<tr>";
-                for (let j = 0; j <= 8; j++) {
-                    let color = j == 0 || i == 0 ? "" : (i + j) % 2 ? "white" : "black";
-                    let cell = i == 0 ? letter[j] : j == 0 ? i : (i == y && j ==x) ? "&#9822;" : "";
-                    kod += `<td class="${color}">`;
-                    kod += cell;
-                    kod += `</td>`;
+                for (let i = 0; i <= 8; i++) {
+                    kod += "<tr>";
+                    for (let j = 0; j <= 8; j++) {
+                        let color = j == 0 || i == 0 ? "" : (i + j) % 2 ? "white" : "black";
+                        let cell = i == 0 ? letter[j] : 
+                                j == 0 ? i :
+                                (i == y && j ==x) ? "&#9822;" :
+                                (Math.abs(x - j) == 1 && Math.abs(y - i) == 2 ||
+                                Math.abs(x - j) == 2 && Math.abs(y - i) == 1) ? "*" : ""
+                         
+                        let event = check(x - j, y - i) ? `onclick="at(${i}, ${j})` : ""
+                        
+                        kod += `<td class="${color}" ${event}">`;
+                        kod += cell;
+                        kod += `</td>`;
+                    }
+                    kod += "</tr>";
                 }
-                kod += "</tr>";
+                
+                cedvel.innerHTML = kod;               
+            }
+
+            function at(i, j) {
+                chess(j, i);
             }
             
-            cedvel.innerHTML = kod;               
-            
-
+            function check(a1, a2) {
+                return (Math.abs(a1) == 1 && Math.abs(a2) == 2 || 
+                Math.abs(a1) == 2 && Math.abs(a2) == 1)
+            }
         </script>
     </body>
 </html>

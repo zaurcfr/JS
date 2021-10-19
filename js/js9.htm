@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Slider</title>
+        <style>
+            #slider {
+                width: 80%;
+                height: 60vh;
+                box-shadow: 0 0 10px #333;
+                margin: 10vh auto;
+                background: url("img/img1.jpg") center/cover;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="slider">
+            <button onclick="change(-1)">ᐊ</button>
+            <button onclick="change(1)">ᐅ</button>
+        </div>
+
+        <script>
+            const slider = document.getElementById("slider");
+            let x = 0;
+            let timer;
+            change();
+
+            function show() {
+                slider.style = "background: url('img/img" + x + ".jpg') center/cover;";
+            }
+
+            function change(d = 1) {
+                clearTimeout(timer);
+                x += d;
+                if (x > 8) x = 1;
+                else if (x < 1) x = 8;
+                show();
+                timer = setTimeout(change, 3000);
+            }
+        </script>
+    </body>
+</html>
