@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Document</title>
+    </head>
+    <body>
+        <fieldset></fieldset>
+        
+        <script>
+            const fieldset = document.getElementsByTagName("fieldset");
+            let kod = "";
+            
+            for(let i = 0; i < 8; i++){
+                kod += "<input type='checkbox' />";
+            }
+            kod += "<sub>2</sub><button onclick='ok()'> = </button>"
+            fieldset[0].innerHTML = kod;
+            
+            const span = document.createElement("span");
+            span.setAttribute("id", "span");
+            fieldset[0].appendChild(span);
+            
+            function ok() {
+                const checks = document.querySelectorAll("[type='checkbox']");
+                const span = document.getElementById("span");
+                let hex = 0;
+                let kod = "";
+                for(let i = 0; i < checks.length; i++) {
+                    if(checks[i].checked){
+                        kod += "1";
+                        hex += 2 ** (checks.length - 1 - i);
+                    }
+                    else kod += "0";
+                }
+                span.innerHTML = "";
+                span.innerHTML += `${kod}<sub>2</sub> = ${hex}<sub>10</sub>`
+            }
+
+        </script>
+    </body>
+</html>

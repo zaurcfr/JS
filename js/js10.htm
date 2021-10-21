@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Document</title>
+    </head>
+    <body>
+        <form></form>
+        <ul>
+            <li class="bir"></li>
+            <li class="bir"></li>
+            <li class="bir"></li>
+            <li class="bir"></li>
+        </ul>
+
+        <script>
+            const li = document.querySelectorAll("li");
+            const form = document.getElementsByTagName("form");
+            const input = document.querySelectorAll("form.input");
+            let kod = "";
+            
+            for(let i = 0; i < 4; i++){
+                kod += "<p><input type='text' class='input' /></p>";
+            }
+            kod += "<p><button onclick='ok()'>Ok</button></p>"
+            form[0].innerHTML = kod;            
+
+            form[0].setAttribute("onsubmit", "return false");
+            function ok() {
+                for(let i = 0; i < 4; i++){
+                    li[i].innerHTML = form[0].elements[i].value;
+                }
+            }
+
+
+
+        </script>
+    </body>
+</html>
