@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Document</title>
+        <style>
+            #cedvel {
+                border-collapse: collapse;
+                margin: 10vh auto;
+            }
+            td {
+                width: 50px;
+                height: 50px;
+                border: 1px solid #333;
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <table id="cedvel"></table>
+
+        <script>
+            const cedvel = document.getElementById("cedvel");
+            let kod = "";
+            let x = 0;
+
+            for(let i = 1; i <= 7; i++){
+                kod += "<tr>";
+                    for(let j = 1; j <= 7; j++){
+                        kod += "<td>";
+                        if (i <= 4 && i == j || i > 4 && i + j == 8) x = 1;
+                        if((i >= j && i + j >= 8) || (i <= j && i + j <= 8)) kod += x;
+                        x = (j > 3) ? x - 1 : x + 1;
+                        kod += "</td>";
+                    }
+                x = 0;
+                kod += "</tr>";
+            }
+
+
+            cedvel.innerHTML = kod;
+        </script>
+    </body>
+</html>

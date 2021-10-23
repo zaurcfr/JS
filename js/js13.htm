@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Document</title>
+        <style>
+            #cedvel {
+                border-collapse: collapse;
+            }
+            td {
+                border: 1px solid #333;
+                width: 50px;
+                height: 50px;
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <table id="cedvel"></table>
+
+        <script>
+            const cedvel = document.getElementById("cedvel");
+            let arr = [""];
+            let empty = [];
+            for(let i = 1; i <= 15; i++) {
+                arr.push(i);
+            }
+            
+            showTable();
+            
+            function showTable() {
+                let kod = "";
+                for(let i = 0; i < 4; i++){
+                    kod += "<tr>";
+                    for(let j = 0; j < 4; j++) {
+                        let n = rand(0, arr.length - 2);
+                        if (arr[n] == "") empty = [i, j];
+                        kod += `<td id='c${i}${j}' onclick='move(${i}, ${j})'>`
+                        kod += arr[n];
+                        kod += "</td>"
+                        arr.splice(n, 1);
+                    }
+                    kod += "</tr>";
+                }
+                cedvel.innerHTML = kod;
+            }
+
+            function move(i, j) {
+                let x1 = document.getElementById("c" + i + j);
+                let x2 = document.getElementById("c" + empty[0] + empty[1]);
+                if( (i == empty[0] && Math.abs(j - empty[1]) == 1) || 
+                    (j == empty[1] && Math.abs(i - empty[0]) == 1)) {
+                        x2.innerHTML = x1.innerHTML;
+                        x1.innerHTML = "";
+                        empty = [i, j];
+                }
+            }
+
+            function rand(min, max){
+                return Math.round(Math.random() * (max - min + 1)) + min;
+            }
+
+        </script>
+    </body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Document</title>
+        <style>
+            #cedvel {
+                border-collapse: collapse;
+                margin: 10vh auto;
+            }
+            td {
+                border: 0px solid #333;
+                width: 114px;
+                height: 114px;
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <table id="cedvel"></table>
+
+        <script>
+            const cedvel = document.getElementById("cedvel");
+            let icons = ["flickr", "bloggr", "digg", "dribbble", "evernote", "facebook", "instagram", "linkedin", "pinterest"]
+            let arr = [];
+            let table = [];
+            let state = [];
+            let prev = [];
+
+            for(let i = 1; i <= 8; i++) {
+                arr.push(i);
+                arr.push(i);
+            }
+            
+            for(let i = 0; i < 4; i++){
+                table[i] = [];
+                for(let j = 0; j < 4; j++) {
+                    let n = rand(0, arr.length - 2);
+                    table[i][j] = arr[n];
+                    arr.splice(n, 1);
+                }
+            }
+
+            for(let i = 0; i < 4; i++){
+                state[i] = [];
+                for(let j = 0; j < 4; j++) {
+                    state[i][j] = true;
+                }
+            }
+
+            showTable();
+            setTimeout(close, 3000)
+
+            function showTable() {
+                let kod = "";
+                for(let i = 0; i < 4; i++){
+                    kod += "<tr>";
+                    for(let j = 0; j < 4; j++) {
+                        let img = state[i][j] ? icons[table[i][j]] : icons[0];
+                        kod += `<td onclick='openCell(${i}, ${j})' style="background: url(icons/${img}.png) center/cover">`
+                        kod += "</td>"
+                    }
+                    kod += "</tr>";
+                }
+                cedvel.innerHTML = kod;
+            }
+
+            function openCell(i, j) {
+                state[i][j] = true;
+                if(prev.length == 0) {
+                    prev = [i, j];
+                }
+                else {
+                    if(table[i][j] != table[prev[0]][prev[1]]) {
+                        setTimeout(function(){
+                            state[i][j] = false;
+                            state[prev[0]][prev[1]] = false;
+                            showTable();
+                            prev = [];
+                        }, 1000) 
+                    }
+                    else prev = [];
+                }
+                showTable();
+            }
+
+            function close() {
+                for(let i = 0; i < 4; i++){
+                    state[i] = [];
+                    for(let j = 0; j < 4; j++) {
+                      state[i][j] = false;
+                    }
+                }
+                showTable();
+            }
+
+
+            function rand(min, max){
+                return Math.round(Math.random() * (max - min + 1)) + min;
+            }
+
+        </script>
+    </body>
+</html>
