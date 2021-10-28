@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Document</title>
+        <style>
+            body {
+                height: 100vh;
+                margin: 0;
+                display: flex;
+                background: #AAA;
+            }
+            #game {
+                position: relative;
+                box-shadow: 0 0 10px #000;
+                margin: auto;
+            }
+            #game > div {
+                position: absolute;
+            }
+            #ball {
+                border-radius: 50%;
+            }
+            #bar {
+                width: 150px;
+                height: 10px;
+                background: #000066;
+                bottom: 10px;
+            }
+        </style>
+    </head>
+    <body>
+        <script>
+            let game = {
+                id: "game",
+                width: 800,
+                height: 600,
+                color: "#fff",
+                elem: {},
+                create() {
+                    this.elem = document.createElement("div")
+                    this.elem.setAttribute("id", this.id);
+                    document.getElementsByTagName("body")[0].appendChild(this.elem);
+                    this.elem.style.width = this.width + "px";
+                    this.elem.style.height = this.height + "px";
+                    this.elem.style.background = this.color;
+                }
+            }
+
+            let ball = {
+                id: "ball",
+                d: 40,
+                color: "radial-gradient(circle at 30% 30%, #fff, #ff0000, #810000)",
+                elem: {},
+                x: 0,
+                y: 0,
+                dx: 5,
+                dy: 5,
+                create() {
+                    this.elem = document.createElement("div")
+                    this.elem.setAttribute("id", this.id);
+                    game.elem.appendChild(this.elem);
+                    this.elem.style.width = this.d + "px";
+                    this.elem.style.height = this.d + "px";
+                    this.elem.style.background = this.color;
+                },
+                move() {
+                    if (ball.x < 0 || ball.x >= 760) ball.dx *= -1;
+                    if (ball.y < 0 || (ball.y >= 540 && ball.x >= barX - 20 && ball.x <= barX + 130)) ball.dy *= -1;
+                    if (ball.y >= 560) gameOver();
+                    ball.x += ball.dx;
+                    ball.y += ball.dy;
+                    ball.elem.style.left = ball.x + "px";
+                    ball.elem.style.top = ball.y + "px";
+                }
+            }
+            
+            let bar = {
+                id: "bar",
+                width: 150,
+                height: 10,
+                color: "#000066"
+                
+            }
+
+
+            game.create();
+            ball.create();
+            let start = setInterval(ball.move, 40);
+
+
+
+
+
+
+
+            // const ball = document.getElementById("ball");
+            // const bar = document.getElementById("bar");
+            // let ballY = 0;
+            // let ballX = 0;
+            // let dy = 5;
+            // let dx = 5;
+            // let barX = 0;
+
+            // let start = setInterval(ballMove, 40);
+
+            // document.onkeydown = barMove;
+
+            // function barMove(e) {
+            //     if (e.keyCode == 37 && barX > 0) barX -= 10;
+            //     else if (e.keyCode == 39 && barX < 650) barX += 10;
+            //     bar.style.left = barX + "px";
+            // }
+
+            // function ballMove() {
+            //     if (ballY < 0 || (ballY >= 540 && ballX >= barX - 20 && ballX <= barX + 130)) dy *= -1;
+            //     if (ballY >= 560) gameOver();
+            //     ballY += dy;
+            //     ball.style.top = ballY + "px";
+                
+            //     if (ballX < 0 || ballX >= 760) dx *= -1;
+            //     ballX += dx;
+            //     ball.style.left = ballX + "px";
+            // }
+
+            // function gameOver() {
+            //     clearInterval(start);
+            //     alert("Game Over!");
+            // }
+        </script>
+    </body>
+</html>
