@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            .yellow { background: yellow;}
+            .orange { background: orange;}
+        </style>
+    </head>
+    <body>
+        <ul>
+            <li>Senan</li>
+            <li>Ayxan</li>
+            <li>Zaur</li>
+            <li>Metin</li>
+            <li>Arif</li>
+            <li>Haci</li>
+        </ul>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script>
+            $(() => {
+                // let arr = ["Senan", "Ayxan", "Zaur", "Metin", "Arif", "Haci"]
+                
+                // $("li")
+                //     .mouseenter(function() {
+                //         if($(this).css("backgroundColor") != "rgb(255, 165, 0)") $(this).css({ background: "yellow" })
+                //     .mouseleave(function() {
+                //         if($(this).css("backgroundColor") != "rgb(255, 165, 0)") $(this).css({ background: "none" })
+                //     })
+                //     .click(function() {
+                //         $(this).css("backgroundColor",
+                //             $(this).css("backgroundColor") == "rgb(255, 165, 0)" ? "rgb(255, 255, 255)" : "rgb(255, 165, 0)"
+                //         )
+                //     })
+                // })
+
+                $("li")
+                    .mouseenter(function() {
+                        $(this).addClass("yellow");
+                    })
+                    .mouseleave(function() {
+                        $(this).removeClass("yellow");
+                    })
+                    .click(function() {
+                        if($(this).hasClass("orange")) $(this).removeClass("orange");
+                        else $(this).addClass("orange");
+                        
+                    })
+
+            });
+        </script>
+    </body>
+</html>
