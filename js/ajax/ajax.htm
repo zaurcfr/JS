@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Document</title>
+    </head>
+    <body>
+        <button onclick="showXML()">Show Catalog</button>
+        <table id="cedvel"></table>
+
+        <script>
+            let cedvel = document.getElementById("cedvel")
+            
+            function showXML() {
+                let ajax = new XMLHttpRequest();
+                ajax.open("GET", "source/cd_catalog.xml");
+                ajax.send();
+                ajax.onreadystatechange = function() {
+                    if(this.readyState == 4 && this.status == 200) {
+                        parseXML(this.responseXML);
+                    }
+                }
+            }
+
+            function parseXML(xml) {
+                let kod = `<tr style="background: #EEE">
+                    <th>TITLE</th>
+                    <th>ARTIST</th>
+                    <th>COUNTRY</th>
+                    <th>COMPANY</th>
+                    <th>PRICE</th>
+                    <th>YEAR</th>
+                </tr>`;
+                let cd = xml.getElementsByTagName("CD");
+                console.log(cd);
+                for(let i = 0; i < cd.length; i++) {
+                    kod += "<tr>";
+                    kod += "<td>" + cd[i].getElementsByTagName("TITLE")[0].innerHTML + "</td>";
+                    kod += "<td>" + cd[i].getElementsByTagName("ARTIST")[0].innerHTML + "</td>";
+                    kod += "<td>" + cd[i].getElementsByTagName("COUNTRY")[0].innerHTML + "</td>";
+                    kod += "<td>" + cd[i].getElementsByTagName("COMPANY")[0].innerHTML + "</td>";
+                    kod += "<td>" + cd[i].getElementsByTagName("PRICE")[0].innerHTML + "</td>";
+                    kod += "<td>" + cd[i].getElementsByTagName("YEAR")[0].innerHTML + "</td>";
+                    kod += "</tr>";
+                }
+                cedvel.innerHTML = kod;
+            }
+        </script>
+    </body>
+</html>

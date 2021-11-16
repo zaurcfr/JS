@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Document</title>
+        <style>
+            body {
+                margin: 0;
+                height: 100vh;
+                display: flex;
+                background: #EEE;
+            }
+            #test {
+                padding: 30px;
+                border-radius: 20px;
+                box-shadow: 0 0 10px #444;
+                margin: auto;
+                width: 50vh;
+            }
+            #test ul {
+                list-style: none;
+                text-align: left;
+            }
+        </style>    
+    </head>
+    <body>
+        <div id="test">
+            <h1 id="h1"></h1>
+            <h2 id="h2"></h2>
+            <ul id="cvb"></ul>
+            <button id="btn">Başla</button>
+        </div>
+        <script>
+            const h1 = document.getElementById("h1");
+            const h2 = document.getElementById("h2");
+            const cvb = document.getElementById("cvb");
+            const btn = document.getElementById("btn");
+            const ajax = new XMLHttpRequest();
+            let json;
+            let x = 0;
+            let cavab = [];
+
+            ajax.open("GET", "source/test.json");
+            ajax.send();
+            ajax.onload = function() {
+                json = JSON.parse(ajax.responseText);
+                h1.innerHTML = "TEST";
+                h2.innerHTML = json.title;
+            }
+
+            btn.onclick = function() {
+                if(x > 0) {
+                    let radio = cvb.getElementsByTagName("input");
+                    cavab[x-1] = "";
+                    for(let i = 0; i < radio.length; i++) {
+                        if(radio[i].checked) {
+                            cavab[x-1] = i;
+                            break;
+                        }
+                    }
+                }
+                if(x < json.quiz.length) {
+                    next();
+                    x++;
+                }
+                else end();
+            }
+
+            function next() {
+                let kod = "";
+                h1.innerHTML = `SUAL: ${x + 1}`;
+                h2.innerHTML = json.quiz[x].q;
+                for(let i = 0; i < json.quiz[x].a.length; i++) {
+                    kod += "<li><input name='answer' type='radio' />" +  json.quiz[x].a[i] + "</li>";
+                }
+                cvb.innerHTML = kod;
+                btn.innerHTML = "Növbəti";
+                
+            }
+
+            function end() {
+                let kod = "";
+                h1.innerHTML = "Nəticə: ";
+                h2.innerHTML = "Statistika";
+                kod += "<li>Doğru: </li>";
+                kod += "<li>Yanlış: </li>";
+                kod += "<li>Boş: </li>";
+                cvb.innerHTML = kod;
+                btn.style.display = "none";
+                console.log(cavab);
+            }
+
+        </script>
+    </body>
+</html>

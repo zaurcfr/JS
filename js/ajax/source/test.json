@@ -1,0 +1,55 @@
+{
+    "title": "Ümumi Biliklər testi",
+    "quiz": [
+        {
+            "q": "Çempionlar liqasını 5 dəfə qaldıran klub?",
+            "a": ["Liverpul", "Milan", "Benfika", "M. Yunayted", "Barselona"],
+            "t": 3
+        },
+        {
+            "q": "Hansı heyvanın qırılan sümüyü qaynamır?",
+            "a": ["Zürafə", "Dələ", "Meymun", "At", "Pişik"],
+            "t": 3
+        },
+        {
+            "q": "İnsandan başqa digər hansı canlı zövq üçün cinsi əlaqədə olur?",
+            "a": ["Delfin", "Timsah", "İt", "Ayı", "Meymun"],
+            "t": 0
+        },
+        {
+            "q": "4 ədəd dizi olan yeganə heyvan hansıdır?",
+            "a": ["Ayı", "Ceyran", "Zürafə", "Dələ", "Fil"],
+            "t": 4
+        },
+        {
+            "q": "Hansı canlının qanı bəyazdır?",
+            "a": ["Çəyirtgə", "Maral", "Hörümçək", "Kəpənək", "İlbiz"],
+            "t": 0
+        },
+        {
+            "q": "1950-ci ildə dünya kuboku hansı ölkədə keçirilib?",
+            "a": ["Fransa", "Kanada", "Brazilya", "İngiltərə", "İtalya"],
+            "t": 2
+        },
+        {
+            "q": "Hansı ölkədə ad günlərində hədiyə qəbul etmək yerinə hədiyə vermək adətdir?",
+            "a": ["Tayland", "Vyetnam", "Ərəbistan", "Peru", "Brazilya"],
+            "t": 0
+        },
+        {
+            "q": "Hansı heyvanın gözləri 4 ayaqlarınıda görəbiləcək şəkildədir?",
+            "a": ["Zürafə", "Ceyran", "Ayı", "Balıq", "Eşşək"],
+            "t": 1
+        },
+        {
+            "q": "Hansı ölkədə heç tualet yoxdur?",
+            "a": ["Kanada", "Kuba", "İran", "Peru", "Türkiyə"],
+            "t": 3
+        },
+        {
+            "q": "Bütün iqlimlərin yaşandığı yeganə ölkə?",
+            "a": ["Yeni Zellandiya", "ABŞ", "Nigerya", "Brazilya", "Kanada"],
+            "t": 1
+        }
+    ]
+}
