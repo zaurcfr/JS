@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Document</title>
+    </head>
+    <body>
+        <canvas id="saat" width="400" height="400" style="background-color: #333;"></canvas>
+        
+        <script>
+            let saat = document.getElementById("saat");
+            let ctx = saat.getContext("2d");
+            let r = saat.height / 2;
+            ctx.translate(r, r);
+            r *= .9;
+            setInterval(drawClock, 1000);
+
+            function drawClock() {
+                let grad = ctx.createRadialGradient(0, 0 , .95 * r, 0, 0, 1.05 * r);
+                grad.addColorStop(0, '#333');
+                grad.addColorStop(0.5, '#FFF');
+                grad.addColorStop(1, '#333');
+                            
+                ctx.beginPath();
+                ctx.arc(0, 0, r, 0, 2 * Math.PI);
+                ctx.fillStyle = "#FFF";
+                ctx.fill();
+
+                ctx.strokeStyle = grad;
+                ctx.lineWidth = .1 * r;
+                ctx.stroke();
+                
+                ctx.beginPath();
+                ctx.arc(0, 0, .1 * r, 0, 2 * Math.PI);
+                ctx.fillStyle = '#333';
+                ctx.fill();
+                
+                ctx.font = .15 * r + "px Arial";
+                ctx.textBaseline = "middle";
+                ctx.textAlign = "center";
+                for(let num = 1; num <= 12; num++) {
+                    let ang = num * Math.PI / 6;
+                    ctx.rotate(ang);
+                    ctx.translate(0, -.85 * r);
+                    ctx.rotate(-ang);
+                    ctx.fillText(num, 0, 0);
+                    ctx.rotate(ang);
+                    ctx.translate(0, .85 * r);
+                    ctx.rotate(-ang);
+                }
+                drawTime();
+            }
+
+            function drawTime() {
+                let now = new Date();
+                let hour = now.getHours() % 12;
+                let minute = now.getMinutes();
+                let second = now.getSeconds();
+                let millisecond = now.getMilliseconds();
+
+                
+                hour = (hour * Math.PI / 6) + (minute * Math.PI / (6 * 60)) + (second * Math.PI / (360 * 60));
+                drawHand(hour, .5 * r, .07 * r);
+                
+                minute = (minute * Math.PI / 30) + (second * Math.PI / (30 * 60));
+                drawHand(minute, .8 * r, .07 * r);
+                
+                second = (second * Math.PI / 30) + (millisecond * Math.PI / (60 * 1000));
+                drawHand(second, .9 * r, .02 * r);
+            }
+
+            function drawHand(pos, length, width) {
+                ctx.beginPath();
+                ctx.lineWidth = width;
+                ctx.lineCap = "round";
+                ctx.moveTo(0, 0);
+                ctx.rotate(pos);
+                ctx.lineTo(0, -length);
+                ctx.stroke();
+                ctx.rotate(-pos);
+            }
+
+        </script>
+
+    </body>
+</html>
